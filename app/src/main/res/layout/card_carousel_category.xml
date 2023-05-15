@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.carousel.MaskableFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mflCarouselCategoryContainer"
+    android:layout_width="150dp"
+    android:layout_height="match_parent"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+    <ImageView
+        android:id="@+id/ivCarouselItemCategory"
+        android:contentDescription="@string/content_desc_carousel_category"
+        tools:src="@tools:sample/backgrounds/scenic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Placeholder"
+        android:textColor="@color/white"
+        android:padding="@dimen/medium_spacing"
+        android:id="@+id/tvLabelItemCategory"
+        android:layout_gravity="bottom|start"
+        android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+</com.google.android.material.carousel.MaskableFrameLayout>

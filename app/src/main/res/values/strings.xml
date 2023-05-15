@@ -5,4 +5,12 @@
     <string name="label_bottom_nav_profile">Profil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_search_job">Cari Job</string>
+    <string name="content_desc_carousel_category">Kategori Korosel</string>
+    <string name="label_category">Kategori</string>
+    <string name="label_recommendation">Rekomendasi</string>
+    <string name="content_desc_home_search_bar">Ketikan Job yang ingin dicari</string>
+    <string name="content_desc_fab_home">Tekan untuk membuat job</string>
+    <string name="label_fab_home">Buat Job</string>
+    <string name="label_btn_detail">Detail</string>
 </resources>
