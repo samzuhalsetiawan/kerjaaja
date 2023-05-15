@@ -13,4 +13,13 @@
     <string name="content_desc_fab_home">Tekan untuk membuat job</string>
     <string name="label_fab_home">Buat Job</string>
     <string name="label_btn_detail">Detail</string>
+    <string name="option_profile_1">Option One</string>
+    <string name="option_profile_2">Option Two</string>
+    <string name="tv_profile">Profile</string>
+    <string name="user_name_profile">Name</string>
+    <string name="tab_text_1">Tampilan</string>
+    <string name="tab_text_2">Jobs</string>
+    <string name="tab_text_3">Keamanan</string>
+    <string name="profile_tabs">Profile Tabs</string>
+    <string name="back_button">back</string>
 </resources>
