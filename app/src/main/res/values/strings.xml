@@ -22,4 +22,5 @@
     <string name="tab_text_3">Keamanan</string>
     <string name="profile_tabs">Profile Tabs</string>
     <string name="back_button">back</string>
+    <string name="setting_tampilan">Setting</string>
 </resources>
