@@ -7,7 +7,7 @@ import com.animebiru.kerjaaja.data.source.remote.response.UserRecommendationResp
 import com.animebiru.kerjaaja.data.source.remote.response.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
@@ -27,61 +27,61 @@ interface ApiService {
 
     //Users Api
     @FormUrlEncoded
-    @POST("/users/register")
+    @POST("users/register")
     fun postRegister(
         @Field("username") username: String,
         @Field("name") name: String,
         @Field("gender") gender: String,
         @Field("password") password:String ,
         @Field("role") role: String
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
     @FormUrlEncoded
-    @POST("/users/login")
+    @POST("users/login")
     fun postLogin(
         @Field("username") username: String,
         @Field("password") password: String
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
     @FormUrlEncoded
-    @POST("/users/verify_password/root")
+    @POST("users/verify_password/root")
     fun verifyPassword(
         @Field("checked") checked: Boolean
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
-    @GET("/users/read")
-    fun getAllUsers():Call<UserResponse>
+    @GET("users/read")
+    fun getAllUsers():Response<UserResponse>
 
     @GET("users/read/{username}")
     fun getFilterUsers(
         @Path("username") username:String
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
     @Multipart
-    @PUT("/users/profile_photo")
+    @PUT("users/profile_photo")
     fun changePhoto(
         @Part("file") file: MultipartBody.Part?,
         @PartMap data: Map<String,RequestBody>
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
-    @PUT("/users/change_username")
+    @PUT("users/change_username")
     fun changeUsername(
         @Field("username") username: String
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
-    @PUT("/users/change_password")
+    @PUT("users/change_password")
     fun changePassword(
         @Field("password") password: String
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
-    @PUT("/users/profile_photo")
+    @PUT("users/profile_photo")
     fun deleteProfilePhoto(
         @Query("delete") delete: Boolean? = false
-    ):Call<UserResponse>
+    ):Response<UserResponse>
 
     //Api Project
     @FormUrlEncoded
-    @POST("/projects/create")
+    @POST("projects/create")
     fun createProject(
         @Field("title") title: String,
         @Field("status") status: String,
@@ -90,89 +90,89 @@ interface ApiService {
         @Field("owner_username") ownerUsername: String,
         @Field("region_latitude") regionLatitude: Float,
         @Field("region_longitude") regionLongitude: Float
-    ):Call<ProjectResponse>
+    ):Response<ProjectResponse>
 
-    @GET("/projects/read")
-    fun getAllProjects():Call<ProjectResponse>
+    @GET("projects/read")
+    fun getAllProjects():Response<ProjectResponse>
 
 
-    @PUT("/projects/update")
+    @PUT("projects/update")
     fun updateProjects(
         @Field("status") status: String,
         @Field("region_latitutde") regionLatitude: Float
-    ):Call<ProjectResponse>
+    ):Response<ProjectResponse>
 
-    @DELETE("/projects/delete")
+    @DELETE("projects/delete")
     fun deleteProjects(
         @Path("id") id: String
-    ):Call<ProjectResponse>
+    ):Response<ProjectResponse>
 
-    @GET("/projects/read/{id}")
+    @GET("projects/read/{id}")
     fun searchUserById(
         @Query("id") id: String
-    ):Call<ProjectResponse>
+    ):Response<ProjectResponse>
 
     // Api Project Category
     @Multipart
-    @POST("/project_catgories/create")
+    @POST("project_catgories/create")
     fun createProjectCategory(
         @Part("name") name: RequestBody,
         @Part image: MultipartBody.Part
-    ):Call<ProjectCategoryResponse>
+    ):Response<ProjectCategoryResponse>
 
-    @GET("/project_categories/read")
-    fun getAllProjectCategories():Call<ProjectCategoryResponse>
+    @GET("project_categories/read")
+    fun getAllProjectCategories():Response<ProjectCategoryResponse>
 
-    @GET("/project_categories/read/{name}")
+    @GET("project_categories/read/{name}")
     fun getFilterProjectCategories(
         @Query("name") name: String
-    ):Call<ProjectCategoryResponse>
+    ):Response<ProjectCategoryResponse>
 
     @Multipart
-    @PUT("/project_categories/update")
+    @PUT("project_categories/update")
     fun updateProjectCategories(
         @Part image: MultipartBody.Part
-    ):Call<ProjectCategoryResponse>
+    ):Response<ProjectCategoryResponse>
 
-    @DELETE("/project_categories/delete")
+    @DELETE("project_categories/delete")
     fun deleteProjectCategories(
         @Path("name") name: String
-    ):Call<ProjectCategoryResponse>
+    ):Response<ProjectCategoryResponse>
 
     //Api User Recommendation
     @FormUrlEncoded
-    @POST("/user_recommendation/create")
+    @POST("user_recommendation/create")
     fun createUserRecommendation(
         @Field("sender_username") senderUsername: String,
         @Field("receiver_username") receiverUsername: String,
         @Field("rating") rating: String
-    ):Call<UserRecommendationResponse>
+    ):Response<UserRecommendationResponse>
 
-    @GET("/user_recommendation/read")
-    fun getAllUserRecommendation():Call<UserRecommendationResponse>
+    @GET("user_recommendation/read")
+    fun getAllUserRecommendation():Response<UserRecommendationResponse>
 
-    @GET("/user_recommendations/read")
+    @GET("user_recommendations/read")
     fun getFilterUserRecommendation(
         @Query("sender_username") senderUsername: String,
         @Query("receiver_username") receiverUsername: String
-    ):Call<UserRecommendationResponse>
+    ):Response<UserRecommendationResponse>
 
-    @PUT("/user_recommendations/update")
+    @PUT("user_recommendations/update")
     fun updateRecommendation(
         @Query("receiver_username") receiverUsername: String,
         @Field("rating") rating: Int,
         @Field("description") description: Int
-    ):Call<UserRecommendationResponse>
+    ):Response<UserRecommendationResponse>
 
-    @DELETE("/user_recommendations/delete")
+    @DELETE("user_recommendations/delete")
     fun deleteUserRecommendation(
         @Body request: DeleteRequest
-    ):Call<UserRecommendationResponse>
+    ):Response<UserRecommendationResponse>
 
-    @DELETE("/user_recommendations/delete")
+    @DELETE("user_recommendations/delete")
     fun deleteReceiverUsername(
         @Query("receiver_username") receiverUsername: String,
-    ):Call<UserRecommendationResponse>
+    ):Response<UserRecommendationResponse>
 
 }
 
