@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 
 class HomeRecommendationAdapter : RecyclerView.Adapter<HomeRecommendationAdapter.ViewHolder>() {
 
+    var listener: HomeRecommendationAdapterListener? = null
+
     inner class ViewHolder(private val binding: CardRecommendationJobBinding): RecyclerView.ViewHolder(binding.root) {
         val context: Context = binding.root.context
         val ivProfilePicture = binding.ivProfilePicture
@@ -57,9 +59,14 @@ class HomeRecommendationAdapter : RecyclerView.Adapter<HomeRecommendationAdapter
             tvUsername.text = job.creator
             chipFee.text = job.fee.toString()
             tvDescription.text = job.shortJobDesc
+            btnDetail.setOnClickListener { listener?.onDetailJobCardClicked() }
         }
 
     }
 
     override fun getItemCount(): Int = listOfJob.size
+
+    fun interface HomeRecommendationAdapterListener {
+        fun onDetailJobCardClicked()
+    }
 }

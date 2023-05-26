@@ -1,88 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/profileFragment"
+    android:id="@+id/cdlProfileFragment"
     tools:context=".presentation.profile.ProfileFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ablProfileFragment"
+        app:liftOnScroll="true"
+        android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        style="?attr/collapsingToolbarLayoutLargeStyle"
+        android:id="@+id/ctlProfileFragment"
+        android:layout_width="match_parent"
+        app:contentScrim="?attr/colorSurface"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+        android:layout_height="?attr/collapsingToolbarLayoutLargeSize">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mtbProfileFragment"
+            app:layout_collapseMode="pin"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/title_toolbar_profile_page"
+            android:elevation="0dp" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-<!--            <com.google.android.material.appbar.MaterialToolbar-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                app:menu="@menu/option_profile_menu"-->
-<!--                app:navigationIcon="@drawable/ic_back_black_24"-->
-<!--                />-->
-
-
-        </com.google.android.material.appbar.AppBarLayout>
-        <TextView
-            android:id="@+id/tvProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="96dp"
-            android:text="@string/tv_profile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/profileImg"
+            android:id="@+id/ivProfilePicture"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="20dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProfile"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/pp_small"
+            tools:src="@tools:sample/avatars"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"/>
 
         <TextView
-            android:id="@+id/profileName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/user_name_profile"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileImg" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/tvUsername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
-            android:contentDescription="@string/profile_tabs"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileName"
-            app:layout_constraintVertical_bias="0.0"
-            app:tabSelectedTextColor="?attr/colorPrimary"
-            app:tabTextColor="@color/black" />
+            android:paddingVertical="@dimen/small_spacing"
+            android:paddingHorizontal="@dimen/medium_spacing"
+            android:text="Sam Zuhal Setiawan"
+            tools:text="Sam Zuhal Setiawan"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:textColor="?attr/colorOnSurface"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/ivProfilePicture"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlProfilePage"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:layout_marginTop="20dp"
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabs" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/vp2ProfilePage"
+            app:layout_constraintTop_toBottomOf="@id/tlProfilePage"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bnvMainBottomNavigation"
+        android:layout_gravity="bottom"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

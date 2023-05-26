@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clMainCoordinatorLayout"
@@ -13,55 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_behavior="@string/searchbar_scrolling_view_behavior"
         app:navGraph="@navigation/main_navigation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bnvMainBottomNavigation" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ablMainAppbarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/sbMainSearchBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_search_job" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.search.SearchView
-        android:id="@+id/svMainSearchView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="@string/hint_search_job"
-        app:layout_anchor="@id/sbMainSearchBar">
-
-    </com.google.android.material.search.SearchView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bnvMainBottomNavigation"
-        android:layout_gravity="bottom"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-        app:menu="@menu/bottom_navigation_menu" />
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabCreateJob"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:textColor="?attr/colorOnPrimary"
-        android:contentDescription="@string/content_desc_fab_home"
-        android:text="@string/label_fab_home"
-        android:translationY="-16dp"
-        app:icon="@drawable/ic_pencil"
-        app:iconTint="?attr/colorOnPrimary"
-        app:layout_anchor="@id/bnvMainBottomNavigation"
-        app:layout_anchorGravity="top|end" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:id="@+id/cpiCircularProgress"
+        android:visibility="gone"
+        tools:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

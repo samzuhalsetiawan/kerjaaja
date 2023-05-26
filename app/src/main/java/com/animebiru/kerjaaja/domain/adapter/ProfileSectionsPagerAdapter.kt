@@ -1,24 +1,69 @@
 package com.animebiru.kerjaaja.domain.adapter
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.animebiru.kerjaaja.presentation.keamanan.KeamananFragment
-import com.animebiru.kerjaaja.presentation.tampilan.TampilanFragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.animebiru.kerjaaja.R
+import com.animebiru.kerjaaja.domain.utils.HelperDummyData
+import com.animebiru.kerjaaja.presentation.profile.ProfileFragmentDirections
 
-class ProfileSectionsPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class ProfileSectionsPagerAdapter(private val parentFragment: Fragment):
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun createFragment(position: Int): Fragment {
-        var fragment: Fragment? = null
-        when(position){ //Belum masukin yang job karena masi agak bingung
-            0 -> fragment = TampilanFragment()
-            1 -> fragment = KeamananFragment()
+    class TabAppearanceViewHolder(private val view: View): RecyclerView.ViewHolder(view)
+    class TabJobsViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+        val rvTabJobs = view.rootView as RecyclerView
+    }
+    class TabSecurityViewHolder(private val view: View): RecyclerView.ViewHolder(view)
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> TAB_APPEARANCE
+            1 -> TAB_JOBS
+            2 -> TAB_SECURITY
+            else -> -1
         }
-        return fragment as Fragment
-    }
-    override fun getItemCount(): Int {
-        return 2 //Belum masukin return
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TAB_APPEARANCE -> TabAppearanceViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.profile_tab_appearance, parent, false))
+            TAB_JOBS -> TabJobsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.profile_tab_jobs, parent, false))
+            TAB_SECURITY -> TabSecurityViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.profile_tab_security, parent, false))
+            else -> throw Exception("Tabs not implemented, viewType: $viewType")
+        }
+    }
 
+    private fun setupTabJobs(holder: TabJobsViewHolder) {
+        val jobsAdapter = HomeRecommendationAdapter()
+        jobsAdapter.listener = HomeRecommendationAdapter.HomeRecommendationAdapterListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToDetailFragment()
+            parentFragment.findNavController().navigate(action)
+        }
+        holder.rvTabJobs.apply {
+            adapter = jobsAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+        jobsAdapter.listOfJob = HelperDummyData.dummyJob
+    }
 
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is TabAppearanceViewHolder -> Unit
+            is TabJobsViewHolder -> setupTabJobs(holder)
+            is TabSecurityViewHolder -> Unit
+        }
+    }
+
+    override fun getItemCount(): Int = 3
+
+    companion object {
+        private const val TAB_APPEARANCE = 0
+        private const val TAB_JOBS = 1
+        private const val TAB_SECURITY = 2
+    }
 }

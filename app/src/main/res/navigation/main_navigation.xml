@@ -8,11 +8,50 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.animebiru.kerjaaja.presentation.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/title_toolbar_home_page"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createProjectFragment"
+            app:destination="@id/createProjectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.animebiru.kerjaaja.presentation.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:label="@string/title_toolbar_profile_page"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.animebiru.kerjaaja.presentation.detail.DetailFragment"
+        android:label="@string/title_toolbar_detail_page"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createProjectFragment"
+        android:name="com.animebiru.kerjaaja.presentation.create_project.CreateProjectFragment"
+        android:label="@string/title_toolbar_create_job"
+        tools:layout="@layout/fragment_create_project" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.animebiru.kerjaaja.presentation.chat.ChatFragment"
+        android:label="@string/title_toolbar_chat_page"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.animebiru.kerjaaja.presentation.history.HistoryFragment"
+        android:label="@string/title_toolbar_history_page"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

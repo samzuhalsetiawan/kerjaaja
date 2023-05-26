@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.data.models.Category
@@ -12,60 +16,64 @@ import com.animebiru.kerjaaja.data.models.Job
 import com.animebiru.kerjaaja.databinding.FragmentHomeBinding
 import com.animebiru.kerjaaja.domain.adapter.HomeCarouselAdapter
 import com.animebiru.kerjaaja.domain.adapter.HomeRecommendationAdapter
+import com.animebiru.kerjaaja.domain.utils.HelperDummyData
+import com.animebiru.kerjaaja.domain.utils.viewBindings
 import com.google.android.material.carousel.CarouselLayoutManager
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.search.SearchView
+import com.google.android.material.search.SearchView.TransitionListener
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home),
+    TransitionListener,
+    HomeRecommendationAdapter.HomeRecommendationAdapterListener {
 
-    private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+    private val binding by viewBindings(FragmentHomeBinding::bind)
     private lateinit var homeCarouselAdapter: HomeCarouselAdapter
     private lateinit var homeRecommendationAdapter: HomeRecommendationAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
+        binding.svMainSearchView.addTransitionListener(this)
+        setupCategoryCarousel()
+        setupJobRecommendationList()
+        binding.fabCreateJob.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToCreateProjectFragment()
+            findNavController().navigate(action)
+        }
+    }
 
-        val lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate sem dui, vitae hendrerit lacus pretium quis. Aenean maximus vehicula sem eu tempor."
+    override fun onDetailJobCardClicked() {
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+        findNavController().navigate(action)
+    }
 
-        val dummyCategories = listOf(
-            Category("Technology", R.drawable.dummy1),
-            Category("Creative", R.drawable.dummy2),
-            Category("Service", R.drawable.dummy3),
-            Category("Dummy4", R.drawable.dummy4),
-            Category("Dummy5", R.drawable.dummy5),
-            Category("Dummy6", R.drawable.dummy6)
-        )
+    override fun onStateChanged(
+        searchView: SearchView,
+        previousState: SearchView.TransitionState,
+        newState: SearchView.TransitionState
+    ) {
+        when (newState) {
+            SearchView.TransitionState.SHOWING -> binding.fabCreateJob.hide()
+            SearchView.TransitionState.HIDDEN -> binding.fabCreateJob.show()
+            else -> Unit
+        }
+    }
 
-        val dummyJob = listOf(
-            Job("1", "Anonymous", R.drawable.pp_small, 10000, lorem),
-            Job("2", "Anonymous", R.drawable.pp_small, 10000, lorem),
-            Job("3", "Anonymous", R.drawable.pp_small, 10000, lorem),
-            Job("4", "Anonymous", R.drawable.pp_small, 10000, lorem),
-            Job("5", "Anonymous", R.drawable.pp_small, 10000, lorem),
-        )
+    private fun setupJobRecommendationList() {
+        homeRecommendationAdapter = HomeRecommendationAdapter().apply { listener = this@HomeFragment }
+        binding.rvRecommendation.apply {
+            adapter = homeRecommendationAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+        homeRecommendationAdapter.listOfJob = HelperDummyData.dummyJob
+    }
 
-        homeCarouselAdapter = HomeCarouselAdapter(dummyCategories)
-        homeRecommendationAdapter = HomeRecommendationAdapter()
-
+    private fun setupCategoryCarousel() {
+        homeCarouselAdapter = HomeCarouselAdapter(HelperDummyData.dummyCategories)
         binding.rvCarouselCategory.apply {
             adapter = homeCarouselAdapter
             layoutManager = CarouselLayoutManager()
             setHasFixedSize(true)
         }
-
-        binding.rvRecommendation.apply {
-            adapter = homeRecommendationAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        homeRecommendationAdapter.listOfJob = dummyJob
-
     }
-
 }
