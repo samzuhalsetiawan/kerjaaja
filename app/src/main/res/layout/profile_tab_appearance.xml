@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:labelText="Ganti foto profile" />
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:itemIcon="@drawable/ic_pencil"
+        app:labelText="Ganti username" />
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:itemIcon="@drawable/ic_paint"
+        app:labelText="Ganti tema aplikasi" />
+
+</LinearLayout>

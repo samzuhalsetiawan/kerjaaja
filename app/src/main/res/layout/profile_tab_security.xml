@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:itemIcon="@drawable/ic_key"
+        app:labelText="Ganti password" />
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:itemIcon="@drawable/ic_notification_outlined"
+        app:labelText="Notifikasi" />
+
+    <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useBottomDivider="true"
+        app:isSingleLineSubtitle="true"
+        app:itemIcon="@drawable/ic_delete"
+        app:labelText="Hapus akun" />
+
+</LinearLayout>

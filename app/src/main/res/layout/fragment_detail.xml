@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/cdlDetailPage"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.detail.DetailFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ablDetailPage"
+        app:liftOnScroll="true"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            style="?attr/collapsingToolbarLayoutLargeStyle"
+            android:id="@+id/ctlDetailPage"
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorSurface"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                app:title="@string/title_toolbar_detail_page"
+                android:id="@+id/mtbDetailPage"
+                android:layout_width="match_parent"
+                app:layout_collapseMode="pin"
+                app:menu="@menu/detail_menu"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/nsvDetailPage">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingTop="@dimen/medium_spacing"
+            android:paddingHorizontal="@dimen/medium_spacing"
+            android:paddingBottom="96dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/clMainContent">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/chipGroup"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRegion"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text_chip_region"
+                    app:chipIcon="@drawable/ic_location_filled"
+                    app:chipIconTint="?attr/colorPrimary"
+                    app:ensureMinTouchTargetSize="true"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCategory"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text_chip_category"
+                    app:chipIcon="@drawable/ic_briefcase_filled"
+                    app:chipIconTint="?attr/colorPrimary"
+                    app:ensureMinTouchTargetSize="true"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipApplicants"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_text_chip_applicants"
+                    app:chipIcon="@drawable/ic_person"
+                    app:chipIconTint="?attr/colorPrimary"
+                    app:ensureMinTouchTargetSize="true"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <include
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:id="@+id/iclHorizontalCardCreator"
+                layout="@layout/card_horizontal_detail_creator"
+                app:layout_constraintTop_toBottomOf="@id/chipGroup"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/livDescription"
+                app:itemIcon="@drawable/ic_information_filled"
+                android:layout_marginTop="@dimen/medium_spacing"
+                app:labelText="Deskripsi"
+                app:subtitleText="Test"
+                app:layout_constraintTop_toBottomOf="@id/iclHorizontalCardCreator"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/livFee"
+                app:labelText="Upah"
+                app:itemIcon="@drawable/ic_rupiah"
+                app:isSingleLineSubtitle="true"
+                app:subtitleText="Test"
+                app:layout_constraintTop_toBottomOf="@id/livDescription"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/livDateCreated"
+                app:itemIcon="@drawable/ic_date_created"
+                app:labelText="Tanggal dibuat"
+                app:isSingleLineSubtitle="true"
+                app:useBottomDivider="false"
+                app:subtitleText="Test"
+                app:layout_constraintTop_toBottomOf="@id/livFee"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/map"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:name="com.animebiru.kerjaaja.presentation.custom_view.CustomSupportMapFragment"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintTop_toBottomOf="@id/livDateCreated"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintWidth_percent="0.8" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bnvMainBottomNavigation"
+        android:layout_gravity="bottom"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,91 @@
+package com.animebiru.kerjaaja.presentation.detail
+
+import android.graphics.Color
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener
+import androidx.core.view.MenuProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.animebiru.kerjaaja.R
+import com.animebiru.kerjaaja.databinding.FragmentDetailBinding
+import com.animebiru.kerjaaja.domain.listener.AppBarStateChangeListener
+import com.animebiru.kerjaaja.domain.utils.viewBindings
+import com.animebiru.kerjaaja.presentation.custom_view.CustomSupportMapFragment
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.appbar.AppBarLayout
+import com.google.maps.android.ktx.addMarker
+
+class DetailFragment : Fragment(R.layout.fragment_detail), OnMenuItemClickListener, OnMapReadyCallback {
+
+    private val binding by viewBindings(FragmentDetailBinding::bind)
+    private var customSupportMapFragment: CustomSupportMapFragment? = null
+    private var googleMap: GoogleMap? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        customSupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as CustomSupportMapFragment
+        findNavController().let {
+            binding.bnvMainBottomNavigation.setupWithNavController(it)
+            binding.mtbDetailPage.setupWithNavController(it)
+        }
+        binding.mtbDetailPage.setOnMenuItemClickListener(this)
+
+        if (true) {
+            if (googleMap == null) {
+                setupMaps()
+            } else {
+                showMap()
+            }
+        }
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.menuChat -> true.also { onMenuChatClicked() }
+            else -> false
+        }
+    }
+
+    private fun showMap() {
+        googleMap?.addMarker {
+            position(LatLng(-33.852, 151.211))
+            title("sydney")
+        }
+        googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(-33.852, 151.211), 16f))
+        customSupportMapFragment?.touchListener = CustomSupportMapFragment.CustomSupportMapFragmentOnTouchListener {
+            binding.nsvDetailPage.requestDisallowInterceptTouchEvent(true)
+        }
+    }
+
+    private fun setupMaps() {
+        customSupportMapFragment?.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        this.googleMap = googleMap
+        showMap()
+    }
+
+    private fun onMenuChatClicked() {
+        val action = DetailFragmentDirections.actionDetailFragmentToChatFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun onMenuBookmarkClicked() {
+
+    }
+}

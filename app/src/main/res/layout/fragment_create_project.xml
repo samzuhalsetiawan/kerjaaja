@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/cdlCreateJobPage"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.create_project.CreateProjectFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ablCreateJobPage"
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mtbCreateJobPage"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/create_project_menu"
+            app:title="@string/title_toolbar_create_job" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvCreateJobPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_container">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etlJobDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true"
+                app:helperText="@string/helper_text_et_job_desc"
+                android:hint="@string/label_et_job_desc">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etJobDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etlJobLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_spacing"
+                app:layout_constraintTop_toBottomOf="@id/etlJobDescription"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_location_filled"
+                app:endIconContentDescription="@string/content_desc_et_find_location"
+                app:helperTextEnabled="true"
+                app:helperText="@string/helper_text_et_job_location"
+                android:hint="@string/label_et_job_location">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etJobLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchExpireFeature"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/small_spacing"
+                app:layout_constraintTop_toBottomOf="@id/etlJobLocation"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/label_switch_enable_expire_feature"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etlExpire"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/switchExpireFeature"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconContentDescription="@string/content_desc_et_expire"
+                app:helperTextEnabled="true"
+                app:helperText="@string/helper_text_et_expire"
+                android:hint="@string/label_et_expire">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etExpire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etlAttachment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_spacing"
+                app:layout_constraintTop_toBottomOf="@id/etlExpire"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_paper_clip"
+                app:endIconContentDescription="@string/content_desc_et_attachment"
+                app:helperTextEnabled="true"
+                app:helperText="@string/helper_text_et_attachment"
+                android:hint="@string/label_et_attachment">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAttachment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
