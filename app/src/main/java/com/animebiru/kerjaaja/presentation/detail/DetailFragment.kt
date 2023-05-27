@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar.OnMenuItemClickListener
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.databinding.FragmentDetailBinding
@@ -33,14 +34,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail), OnMenuItemClickListen
     private val binding by viewBindings(FragmentDetailBinding::bind)
     private var customSupportMapFragment: CustomSupportMapFragment? = null
     private var googleMap: GoogleMap? = null
+    private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.homeFragment, R.id.historyFragment, R.id.profileFragment)) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         customSupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as CustomSupportMapFragment
         findNavController().let {
+            binding.ctlDetailPage.setupWithNavController(binding.mtbDetailPage, it, appBarConfiguration)
             binding.bnvMainBottomNavigation.setupWithNavController(it)
-            binding.mtbDetailPage.setupWithNavController(it)
         }
         binding.mtbDetailPage.setOnMenuItemClickListener(this)
 

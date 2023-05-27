@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.animebiru.kerjaaja.R
@@ -18,11 +19,12 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
 
     private val binding by viewBindings(FragmentHistoryBinding::bind)
     private val adapter by lazy { HomeRecommendationAdapter() }
+    private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.homeFragment, R.id.historyFragment, R.id.profileFragment)) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mtbHistoryPage.setupWithNavController(findNavController())
+        binding.ctlHistoryPage.setupWithNavController(binding.mtbHistoryPage, findNavController(), appBarConfiguration)
         binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
         binding.rvHistoryPage.apply {
             this.adapter = this@HistoryFragment.adapter
