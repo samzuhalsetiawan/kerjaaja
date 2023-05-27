@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.animebiru.kerjaaja.R
@@ -19,14 +21,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val binding by viewBindings(FragmentProfileBinding::bind)
+    private val appBarConfiguration by lazy { AppBarConfiguration(setOf(R.id.homeFragment, R.id.historyFragment, R.id.profileFragment)) }
     private val profileSectionsPagerAdapter by lazy { ProfileSectionsPagerAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mtbProfileFragment.setupWithNavController(findNavController())
-        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
-
+        binding.ctlProfileFragment.setupWithNavController(binding.mtbProfileFragment, findNavController(), appBarConfiguration)
         val viewPager: ViewPager2 = binding.vp2ProfilePage
         val tabs: TabLayout = binding.tlProfilePage
         viewPager.adapter = profileSectionsPagerAdapter
@@ -34,6 +35,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
     }
 
     companion object{
