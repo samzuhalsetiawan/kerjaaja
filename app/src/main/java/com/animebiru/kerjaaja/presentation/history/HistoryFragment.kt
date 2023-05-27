@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.animebiru.kerjaaja.R
@@ -25,12 +26,16 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ctlHistoryPage.setupWithNavController(binding.mtbHistoryPage, findNavController(), appBarConfiguration)
-        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
         binding.rvHistoryPage.apply {
             this.adapter = this@HistoryFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
         adapter.listOfJob = HelperDummyData.dummyJob
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
     }
 
 }

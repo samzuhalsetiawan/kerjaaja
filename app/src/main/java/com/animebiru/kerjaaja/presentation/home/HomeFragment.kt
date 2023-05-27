@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.animebiru.kerjaaja.R
@@ -32,7 +33,6 @@ class HomeFragment : Fragment(R.layout.fragment_home),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
         binding.svMainSearchView.addTransitionListener(this)
         setupCategoryCarousel()
         setupJobRecommendationList()
@@ -40,6 +40,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),
             val action = HomeFragmentDirections.actionHomeFragmentToCreateProjectFragment()
             findNavController().navigate(action)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
     }
 
     override fun onDetailJobCardClicked() {

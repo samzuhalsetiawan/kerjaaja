@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.animebiru.kerjaaja.R
@@ -27,8 +28,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ctlProfileFragment.setupWithNavController(binding.mtbProfileFragment, findNavController(), appBarConfiguration)
-        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
-
         val viewPager: ViewPager2 = binding.vp2ProfilePage
         val tabs: TabLayout = binding.tlProfilePage
         viewPager.adapter = profileSectionsPagerAdapter
@@ -36,6 +35,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bnvMainBottomNavigation.setupWithNavController(findNavController())
     }
 
     companion object{
