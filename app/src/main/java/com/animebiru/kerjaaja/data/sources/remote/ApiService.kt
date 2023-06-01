@@ -1,10 +1,10 @@
-package com.animebiru.kerjaaja.data.source.remote
+package com.animebiru.kerjaaja.data.sources.remote
 
-import com.animebiru.kerjaaja.data.source.remote.response.DeleteRequest
-import com.animebiru.kerjaaja.data.source.remote.response.ProjectCategoryResponse
-import com.animebiru.kerjaaja.data.source.remote.response.ProjectResponse
-import com.animebiru.kerjaaja.data.source.remote.response.UserRecommendationResponse
-import com.animebiru.kerjaaja.data.source.remote.response.UserResponse
+import com.animebiru.kerjaaja.data.sources.remote.dto.DeleteRequest
+import com.animebiru.kerjaaja.data.sources.remote.dto.ProjectCategoryResponse
+import com.animebiru.kerjaaja.data.sources.remote.dto.ProjectResponse
+import com.animebiru.kerjaaja.data.sources.remote.dto.UserRecommendationResponse
+import com.animebiru.kerjaaja.data.sources.remote.dto.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

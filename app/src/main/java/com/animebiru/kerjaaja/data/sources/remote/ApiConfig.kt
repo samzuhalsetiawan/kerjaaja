@@ -1,14 +1,13 @@
-package com.animebiru.kerjaaja.data.source.remote
+package com.animebiru.kerjaaja.data.sources.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class ApiConfig {
     companion object{
-        fun getApiService(): ApiService{
+        fun getApiService(): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder()
