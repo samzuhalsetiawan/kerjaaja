@@ -1,21 +1,20 @@
 package com.animebiru.kerjaaja.presentation.main
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation.AnimationListener
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.CompoundButton
 import androidx.activity.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.animebiru.kerjaaja.R
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.animebiru.kerjaaja.databinding.ActivityMainBinding
+import com.animebiru.kerjaaja.databinding.FragmentChangeThemeBinding
 import com.animebiru.kerjaaja.domain.sealed_class.MainActivityEvents
 import com.animebiru.kerjaaja.presentation.dialog.DialogError
-import com.google.android.material.search.SearchView
-import com.google.android.material.search.SearchView.TransitionState
+import com.animebiru.kerjaaja.presentation.profile.appearance.theme.ChangeThemeViewModel
+import com.animebiru.kerjaaja.presentation.profile.appearance.theme.SettingsThemePreferences
+import com.animebiru.kerjaaja.presentation.profile.appearance.ViewModelFactory
+import com.animebiru.kerjaaja.presentation.profile.appearance.theme.datastore
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +38,8 @@ class MainActivity : AppCompatActivity() {
                 event !is MainActivityEvents.OnLogout -> closeLoading()
             }
         }
+
+        getThemeSetting()
     }
 
     private fun closeLoading() {
@@ -58,6 +59,26 @@ class MainActivity : AppCompatActivity() {
     private fun showError(throwable: Throwable) {
         dialogError.setMessage(throwable.message ?: "Terjadi kesalahan sistem")
         dialogError.showDialog(supportFragmentManager)
+    }
+
+    private fun getThemeSetting(){
+        val bindingSetting = FragmentChangeThemeBinding.inflate(layoutInflater)
+        val preference = SettingsThemePreferences.getInstance(datastore)
+        val switchViewModel = ViewModelProvider(this, ViewModelFactory(preference))[ChangeThemeViewModel::class.java]
+        switchViewModel.getThemeSettings().observe(this){ isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                bindingSetting.changeTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                bindingSetting.changeTheme.isChecked = false
+            }
+        }
+
+        bindingSetting.changeTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            switchViewModel.saveThemeSetting(isChecked)
+
+        }
     }
 
 

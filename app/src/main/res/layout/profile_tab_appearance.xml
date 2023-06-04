@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvChangePhotoProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"
@@ -14,6 +15,7 @@
         app:labelText="Ganti foto profile" />
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvChangeUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"
@@ -22,6 +24,7 @@
         app:labelText="Ganti username" />
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvChangeTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"

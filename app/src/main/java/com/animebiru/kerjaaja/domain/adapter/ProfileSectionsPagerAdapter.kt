@@ -4,21 +4,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.domain.utils.HelperDummyData
+import com.animebiru.kerjaaja.presentation.custom_view.ListItemView
 import com.animebiru.kerjaaja.presentation.profile.ProfileFragmentDirections
 
 class ProfileSectionsPagerAdapter(private val parentFragment: Fragment):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    class TabAppearanceViewHolder(private val view: View): RecyclerView.ViewHolder(view)
+    class TabAppearanceViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+        private val cvChangePhotoProfile: ListItemView = view.findViewById(R.id.cvChangePhotoProfile)
+        private val cvChangeUsername: ListItemView = view.findViewById(R.id.cvChangeUsername)
+        private val cvChangeTheme: ListItemView = view.findViewById(R.id.cvChangeTheme)
+
+        init {
+            cvChangePhotoProfile.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToChangePhotoProfileFragment()
+                view.findNavController().navigate(action)
+            }
+
+            cvChangeUsername.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToChangeUsernameFragment()
+                view.findNavController().navigate(action)
+            }
+
+            cvChangeTheme.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToChangeThemeFragment()
+                view.findNavController().navigate(action)
+            }
+        }
+    }
     class TabJobsViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         val rvTabJobs = view.rootView as RecyclerView
     }
-    class TabSecurityViewHolder(private val view: View): RecyclerView.ViewHolder(view)
+    class TabSecurityViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+        private val cvChangePassword: ListItemView = view.findViewById(R.id.cvChangePassword)
+        private val cvNotification: ListItemView = view.findViewById(R.id.cvNotification)
+        private val cvDeleteAccount: ListItemView = view.findViewById(R.id.cvDeleteAccount)
+
+        init {
+            cvChangePassword.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment()
+                view.findNavController().navigate(action)
+            }
+
+            cvNotification.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToNotificationFragment()
+                view.findNavController().navigate(action)
+            }
+
+            cvDeleteAccount.setOnClickListener {
+                val action = ProfileFragmentDirections.actionProfileFragmentToDeleteAccountFragment()
+                view.findNavController().navigate(action)
+            }
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
