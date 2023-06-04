@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.login.LoginFragment">
+
+    <com.animebiru.kerjaaja.presentation.custom_view.TextEditText
+        style="?attr/textInputFilledStyle"
+        android:id="@+id/etlUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.8"
+        android:hint="@string/label_et_username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etlPassword">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUsername"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.animebiru.kerjaaja.presentation.custom_view.TextEditText>
+
+    <com.animebiru.kerjaaja.presentation.custom_view.PasswordEditText
+        style="?attr/textInputFilledStyle"
+        android:id="@+id/etlPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_et_password"
+        app:endIconMode="password_toggle"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/etlUsername"
+        app:layout_constraintLeft_toLeftOf="@id/etlUsername"
+        app:layout_constraintRight_toRightOf="@id/etlUsername"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content" />
+
+    </com.animebiru.kerjaaja.presentation.custom_view.PasswordEditText>
+
+    <com.animebiru.kerjaaja.presentation.custom_view.FormButton
+        android:layout_width="0dp"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:text="@string/label_btn_login"
+        android:id="@+id/btnLogin"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/etlPassword"
+        app:layout_constraintLeft_toLeftOf="@id/etlUsername"
+        app:layout_constraintRight_toRightOf="@id/etlUsername"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"/>
+
+    <com.animebiru.kerjaaja.presentation.custom_view.FormButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/label_btn_register"
+        android:id="@+id/btnRegister"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintLeft_toLeftOf="@id/etlUsername"
+        app:layout_constraintRight_toRightOf="@id/etlUsername"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

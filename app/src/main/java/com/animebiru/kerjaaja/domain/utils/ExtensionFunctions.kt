@@ -2,6 +2,7 @@ package com.animebiru.kerjaaja.domain.utils
 
 import android.content.res.Resources
 import android.util.TypedValue
+import com.animebiru.kerjaaja.domain.enums.Gender
 
 object ExtensionFunctions {
 
@@ -13,4 +14,8 @@ object ExtensionFunctions {
         get() {
             return this.toFloat().toPx()
         }
+
+    fun String.toGender(): Gender? {
+        return Gender.values().find { it.label.lowercase() == this.lowercase() }
+    }
 }
