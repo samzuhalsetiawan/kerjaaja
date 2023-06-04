@@ -57,4 +57,16 @@
     <string name="title_toolbar_profile_page">Profil</string>
     <string name="title_toolbar_chat_page">Chat</string>
     <string name="title_toolbar_home_page">Home</string>
+    <string name="label_et_username">Username</string>
+    <string name="error_text_password_etl">At least 8 character for password</string>
+    <string name="error_text_confirm_password_etl">Password not match</string>
+    <string name="label_dropdown_gender">Gender</string>
+    <string name="label_et_full_name">Full Name</string>
+    <string name="label_et_password">Password</string>
+    <string name="label_et_password_confirm">Confirm Password</string>
+    <string name="label_btn_register">Register</string>
+    <string name="error_text_empty_text_field">This field cannot be empty</string>
+    <string name="label_btn_login">Login</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
 </resources>
