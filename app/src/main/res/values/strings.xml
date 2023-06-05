@@ -3,6 +3,7 @@
     <string name="label_bottom_nav_home">Beranda</string>
     <string name="label_bottom_nav_history">Histori</string>
     <string name="label_bottom_nav_profile">Profil</string>
+    <string name="dark_mode">Dark Mode</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_search_job">Cari Job</string>
@@ -57,6 +58,24 @@
     <string name="title_toolbar_profile_page">Profil</string>
     <string name="title_toolbar_chat_page">Chat</string>
     <string name="title_toolbar_home_page">Home</string>
+    <string name="title_toolbar_change_photo_profile">Ganti foto profile</string>
+    <string name="title_toolbar_change_username">Ganti Username</string>
+    <string name="helper_text_et_change_username">Silahkan mengisi username anda yang baru</string>
+    <string name="title_toolbar_change_password">Ganti Password</string>
+    <string name="label_et_old_password">Password Lama</string>
+    <string name="helper_text_et_old_password">Silahkan mengisi password lama anda</string>
+    <string name="label_et_new_password">Password Baru</string>
+    <string name="helper_text_et_new_password">Silahkan mengisi password baru</string>
+    <string name="label_et_confirm_new_password">Konfirmasi Password Baru</string>
+    <string name="helper_text_et_confirm_new_password">Silahkan mengisi kembali password baru</string>
+    <string name="choose_gallery">Gallery</string>
+    <string name="choose_camera">Camera</string>
+    <string name="label_menu_save">Simpan</string>
+    <string name="title_toolbar_delete_account">Hapus Akun</string>
+    <string name="tv_delete_helper">Anda akan kehilangan semua data, chat, dan history dari penggunaan aplikasi. Akun anda juga tidak akan bisa di kembalikan.</string>
+    <string name="btn_delete_account">Hapus Akun Anda</string>
+    <string name="title_toolbar_change_theme">Ganti Tema Aplikasi</string>
+    <string name="tv_delete_question">Anda yakin ingin menghapus akun?</string>
     <string name="label_et_username">Username</string>
     <string name="error_text_password_etl">At least 8 character for password</string>
     <string name="error_text_confirm_password_etl">Password not match</string>

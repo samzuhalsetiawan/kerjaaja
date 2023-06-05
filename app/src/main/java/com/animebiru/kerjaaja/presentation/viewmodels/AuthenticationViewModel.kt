@@ -62,4 +62,8 @@ class AuthenticationViewModel @Inject constructor (
         }
     }
 
+    fun notifyTransactionSuccess() {
+        _events.value = AuthenticationEvent.OnTransactionSuccess
+    }
+
 }

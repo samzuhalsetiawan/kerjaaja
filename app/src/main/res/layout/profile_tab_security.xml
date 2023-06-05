@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"
@@ -15,6 +16,7 @@
         app:labelText="Ganti password" />
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"
@@ -23,6 +25,7 @@
         app:labelText="Notifikasi" />
 
     <com.animebiru.kerjaaja.presentation.custom_view.ListItemView
+        android:id="@+id/cvDeleteAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:useBottomDivider="true"

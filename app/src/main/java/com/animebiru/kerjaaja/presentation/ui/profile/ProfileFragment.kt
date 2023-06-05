@@ -15,6 +15,7 @@ import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.databinding.FragmentProfileBinding
 import com.animebiru.kerjaaja.presentation.adapter.ProfileSectionsPagerAdapter
 import com.animebiru.kerjaaja.domain.utils.viewBindings
+import com.animebiru.kerjaaja.presentation.custom_view.ListItemView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -34,6 +35,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+
+//        val tabAppearanceFragment = profileSectionsPagerAdapter.onCreateViewHolder(TAB_TITLES,2)
+//        if (tabAppearanceFragment is FragmentAppearance) {
+//            val cvChangePhotoProfile: ListItemView = tabAppearanceFragment.requireView().findViewById(R.id.cvChangePhotoProfile)
+//            val cvChangeUsername: ListItemView = tabAppearanceFragment.requireView().findViewById(R.id.cvChangeUsername)
+//            val cvHangeTheme: ListItemView = tabAppearanceFragment.requireView().findViewById(R.id.cvChangeTheme)
+//
+//            cvChangePhotoProfile.setOnClickListener {
+//                // Aksi yang dijalankan saat cvChangePhotoProfile ditekan
+//                // Contoh: Navigasi ke fragment GantiFotoProfileFragment
+//            }
+//
+//            cvChangeUsername.setOnClickListener {
+//                // Aksi yang dijalankan saat cvChangeUsername ditekan
+//                // Contoh: Navigasi ke fragment GantiUsernameFragment
+//            }
+//
+//            cvHangeTheme.setOnClickListener {
+//                // Aksi yang dijalankan saat cvHangeTheme ditekan
+//                // Contoh: Membuka dialog untuk memilih tema aplikasi
+//            }
+//        }
+
 
     }
 
