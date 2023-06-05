@@ -5,7 +5,7 @@
     android:id="@+id/clMainCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.MainActivity">
+    tools:context=".presentation.ui.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMainNav"
@@ -19,7 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cpiCircularProgress"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.profile.appearance.theme.ChangeThemeFragment">
+    tools:context=".presentation.ui.profile.appearance.theme.ChangeThemeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ablChangeTheme"

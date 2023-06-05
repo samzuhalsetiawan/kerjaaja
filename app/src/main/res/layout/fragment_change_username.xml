@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/cdlChangeUsername"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.profile.appearance.ChangeUsernameFragment">
+    tools:context=".presentation.ui.profile.appearance.ChangeUsernameFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

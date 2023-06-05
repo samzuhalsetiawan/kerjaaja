@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".presentation.profile.appearance.ChangePhotoProfileFragment">
+    tools:context=".presentation.ui.profile.appearance.ChangePhotoProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ablChangePhotoProfile"

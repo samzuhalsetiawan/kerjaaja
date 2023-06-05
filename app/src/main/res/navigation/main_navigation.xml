@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.animebiru.kerjaaja.presentation.home.HomeFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.home.HomeFragment"
         android:label="@string/title_toolbar_home_page"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.ProfileFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.ProfileFragment"
         android:label="@string/title_toolbar_profile_page"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.animebiru.kerjaaja.presentation.detail.DetailFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.detail.DetailFragment"
         android:label="@string/title_toolbar_detail_page"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -55,17 +55,17 @@
     </fragment>
     <fragment
         android:id="@+id/createProjectFragment"
-        android:name="com.animebiru.kerjaaja.presentation.create_project.CreateProjectFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.create_project.CreateProjectFragment"
         android:label="@string/title_toolbar_create_job"
         tools:layout="@layout/fragment_create_project" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.animebiru.kerjaaja.presentation.chat.ChatFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.chat.ChatFragment"
         android:label="@string/title_toolbar_chat_page"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.animebiru.kerjaaja.presentation.history.HistoryFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.history.HistoryFragment"
         android:label="@string/title_toolbar_history_page"
         tools:layout="@layout/fragment_history" >
         <action
@@ -74,31 +74,64 @@
     </fragment>
     <fragment
         android:id="@+id/changePhotoProfileFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.appearance.ChangePhotoProfileFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.appearance.ChangePhotoProfileFragment"
         android:label="fragment_change_photo_profile"
         tools:layout="@layout/fragment_change_photo_profile" />
     <fragment
         android:id="@+id/changeThemeFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.appearance.theme.ChangeThemeFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.appearance.theme.ChangeThemeFragment"
         android:label="fragment_change_theme"
         tools:layout="@layout/fragment_change_theme" />
     <fragment
         android:id="@+id/changeUsernameFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.appearance.ChangeUsernameFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.appearance.ChangeUsernameFragment"
         android:label="fragment_change_username"
         tools:layout="@layout/fragment_change_username" />
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.security.ChangePasswordFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.security.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.security.NotificationFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.security.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="com.animebiru.kerjaaja.presentation.profile.security.DeleteAccountFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.profile.security.DeleteAccountFragment"
         android:label="fragment_delete_account"
         tools:layout="@layout/fragment_delete_account" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.animebiru.kerjaaja.presentation.ui.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
