@@ -7,86 +7,95 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.home.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/searchbar_scrolling_view_behavior"
-        android:id="@+id/nsvHomePage"
         tools:ignore="PrivateResource">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingTop="76dp"
-            android:paddingHorizontal="@dimen/padding_container"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:id="@+id/nsvHomePage"
+            tools:ignore="PrivateResource">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/small_spacing"
-                android:paddingHorizontal="@dimen/medium_spacing"
-                android:text="@string/label_category"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/btnDetailCategory"
-                android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                android:id="@+id/tvLabelCategory" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingTop="76dp"
+                android:paddingHorizontal="@dimen/padding_container"
+                android:paddingBottom="1000dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnDetailCategory"
-                app:layout_constraintTop_toTopOf="@id/tvLabelCategory"
-                app:layout_constraintBottom_toBottomOf="@id/tvLabelCategory"
-                app:layout_constraintRight_toRightOf="parent"
-                app:icon="@drawable/ic_right_arrow"
-                style="?attr/materialIconButtonStyle" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/small_spacing"
+                    android:paddingHorizontal="@dimen/medium_spacing"
+                    android:text="@string/label_category"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnDetailCategory"
+                    android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                    android:id="@+id/tvLabelCategory" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="@dimen/carousel_height"
-                android:id="@+id/rvCarouselCategory"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelCategory"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnDetailCategory"
+                    app:layout_constraintTop_toTopOf="@id/tvLabelCategory"
+                    app:layout_constraintBottom_toBottomOf="@id/tvLabelCategory"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:icon="@drawable/ic_right_arrow"
+                    style="?attr/materialIconButtonStyle" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_spacing"
-                android:paddingVertical="@dimen/small_spacing"
-                android:paddingHorizontal="@dimen/medium_spacing"
-                android:text="@string/label_recommendation"
-                app:layout_constraintTop_toBottomOf="@id/rvCarouselCategory"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/btnDetailRecommendation"
-                android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                android:id="@+id/tvLabelRecommendation" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/carousel_height"
+                    android:id="@+id/rvCarouselCategory"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelCategory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnDetailRecommendation"
-                app:layout_constraintTop_toTopOf="@id/tvLabelRecommendation"
-                app:layout_constraintBottom_toBottomOf="@id/tvLabelRecommendation"
-                app:layout_constraintRight_toRightOf="parent"
-                app:icon="@drawable/ic_right_arrow"
-                style="?attr/materialIconButtonStyle" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_spacing"
+                    android:paddingVertical="@dimen/small_spacing"
+                    android:paddingHorizontal="@dimen/medium_spacing"
+                    android:text="@string/label_recommendation"
+                    app:layout_constraintTop_toBottomOf="@id/rvCarouselCategory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/btnDetailRecommendation"
+                    android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                    android:id="@+id/tvLabelRecommendation" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/medium_spacing"
-                android:id="@+id/rvRecommendation"
-                android:overScrollMode="never"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelRecommendation"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnDetailRecommendation"
+                    app:layout_constraintTop_toTopOf="@id/tvLabelRecommendation"
+                    app:layout_constraintBottom_toBottomOf="@id/tvLabelRecommendation"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:icon="@drawable/ic_right_arrow"
+                    style="?attr/materialIconButtonStyle" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/medium_spacing"
+                    android:id="@+id/rvRecommendation"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@id/tvLabelRecommendation"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ablMainAppbarLayout"
@@ -106,6 +115,11 @@
         android:layout_height="match_parent"
         android:hint="@string/hint_search_job"
         app:layout_anchor="@id/sbMainSearchBar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </com.google.android.material.search.SearchView>
 

@@ -14,9 +14,11 @@ class DataStorePreferences(private val applicationContext: Context) {
 
     private val Context.tokenPreferences: DataStore<Preferences> by preferencesDataStore(DATASTORE_TOKEN_PREFERENCES_NAME)
     private val Context.themePreferences: DataStore<Preferences> by preferencesDataStore(DATASTORE_THEME_PREFERENCES_NAME)
+    private val Context.userPreferences: DataStore<Preferences> by preferencesDataStore(DATASTORE_USER_PREFERENCES_NAME)
 
     private val accessTokenKey by lazy { stringPreferencesKey(DATASTORE_PREFERENCES_ACCESS_TOKEN_KEY) }
     private val themeKey by lazy { booleanPreferencesKey(DATASTORE_PREFERENCES_THEME_KEY) }
+    private val usernameKey by lazy { stringPreferencesKey(DATASTORE_PREFERENCES_USERNAME_KEY) }
 
     suspend fun setAccessToken(token: String) {
         applicationContext.tokenPreferences.edit { mutablePreferences ->
@@ -48,10 +50,24 @@ class DataStorePreferences(private val applicationContext: Context) {
         }
     }
 
+    suspend fun saveUsername(username: String) {
+        applicationContext.userPreferences.edit { preferences ->
+            preferences[usernameKey] = username
+        }
+    }
+
+    fun getUsernameFlow(): Flow<String?> {
+        return applicationContext.userPreferences.data.map { preferences ->
+            preferences[usernameKey]
+        }
+    }
+
     companion object {
         private const val DATASTORE_TOKEN_PREFERENCES_NAME = "com.animebiru.kerjaaja.DATASTORE_TOKEN_PREFERENCES_NAME"
         private const val DATASTORE_THEME_PREFERENCES_NAME = "com.animebiru.kerjaaja.DATASTORE_THEME_PREFERENCES_NAME"
+        private const val DATASTORE_USER_PREFERENCES_NAME = "com.animebiru.kerjaaja.DATASTORE_USER_PREFERENCES_NAME"
         private const val DATASTORE_PREFERENCES_ACCESS_TOKEN_KEY = "com.animebiru.kerjaaja.DATASTORE_PREFERENCES_ACCESS_TOKEN_KEY"
         private const val DATASTORE_PREFERENCES_THEME_KEY = "com.animebiru.kerjaaja.DATASTORE_PREFERENCES_THEME_KEY"
+        private const val DATASTORE_PREFERENCES_USERNAME_KEY = "com.animebiru.kerjaaja.DATASTORE_PREFERENCES_USERNAME_KEY"
     }
 }

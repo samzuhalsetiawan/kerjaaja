@@ -46,9 +46,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/pp_small"
+            android:src="@drawable/default_photo_profile"
             tools:src="@tools:sample/avatars"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"/>
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CircularImageView"/>
 
         <TextView
             android:id="@+id/tvUsername"
