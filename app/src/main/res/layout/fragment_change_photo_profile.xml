@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/medium_spacing"
-                android:paddingVertical="@dimen/small_spacing"
+                android:paddingTop="@dimen/small_spacing"
                 android:text="Sam Zuhal Setiawan"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadlineMedium"
@@ -61,6 +61,20 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivProfilePicture"
                 tools:text="Sam Zuhal Setiawan" />
+            <TextView
+                android:id="@+id/tvLabelChangePicture"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/medium_spacing"
+                android:paddingVertical="@dimen/small_spacing"
+                android:text="@string/tv_helper_change_profile_picture"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="@color/light_grey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUsername"
+                tools:text="@string/tv_helper_change_profile_picture" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,9 +88,13 @@
     <string name="label_btn_login">Login</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
-    <string name="helper_text_dropdown_category">Pisahkan dengan koma \",\"</string>
-    <string name="label_search_bar_find_location">Cari Lokasi...</string>
-    <string name="helper_text_et_project_fee">Nominal upah (number only)</string>
+    <string name="tv_login_title">Masuk</string>
+    <string name="content_description_logo_image">Image Logo</string>
+    <string name="tv_helper_change_profile_picture">Silahkan tekan foto untuk mengganti foto profile</string>
+    <string name="tv_title_register">Registrasi</string>
+    <string name="tv_helper_text_registration">Silahkan registrasi jika belum memiliki akun</string>
+    <string name="helper_text_et_project_fee">Masukan nominalnya saja (ex: 1000000)</string>
     <string name="label_et_project_fee">Upah</string>
+    <string name="helper_text_dropdown_category">Masukan kategori project anda. pisahkan dengan koma \",\"</string>
     <string name="label_fab_chat">Chatting</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.animebiru.kerjaaja.R
@@ -17,22 +18,14 @@ import com.animebiru.kerjaaja.databinding.ActivityMainBinding
 import com.animebiru.kerjaaja.databinding.FragmentChangeThemeBinding
 import com.animebiru.kerjaaja.domain.events.UIEvent
 import com.animebiru.kerjaaja.domain.events.UserEvent
-import com.animebiru.kerjaaja.domain.utils.ExtensionsHelper.collectFlowWhenStarted
 import com.animebiru.kerjaaja.domain.utils.viewBindings
 import com.animebiru.kerjaaja.presentation.viewmodels.ChangeThemeViewModel
 import com.animebiru.kerjaaja.presentation.ui.dialog.DialogError
 import com.animebiru.kerjaaja.presentation.ui.register.RegisterFragmentDirections
 import com.animebiru.kerjaaja.presentation.viewmodels.EventViewModel
-import com.animebiru.kerjaaja.presentation.viewmodels.ProjectViewModel
 import com.animebiru.kerjaaja.presentation.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.tensorflow.lite.task.core.BaseOptions
-import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier
-import org.tensorflow.lite.task.text.nlclassifier.BertNLClassifier.BertNLClassifierOptions
-import org.tensorflow.lite.task.text.nlclassifier.NLClassifier
-import org.tensorflow.lite.task.text.nlclassifier.NLClassifier.NLClassifierOptions
-import java.util.concurrent.ScheduledThreadPoolExecutor
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -46,6 +39,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val navController by lazy { navHost.navController }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         getThemeSetting()
