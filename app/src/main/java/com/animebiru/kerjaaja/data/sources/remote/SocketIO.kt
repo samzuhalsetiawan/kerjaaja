@@ -6,6 +6,8 @@ import java.net.URISyntaxException
 
 object SocketIO {
 
-    val socket: Socket by lazy { IO.socket("http://192.168.100.4:3000") }
+    val socket: Socket by lazy {
+        IO.socket("https://kerjaaja-backend-production.up.railway.app/chat-feature")
+    }
 
 }

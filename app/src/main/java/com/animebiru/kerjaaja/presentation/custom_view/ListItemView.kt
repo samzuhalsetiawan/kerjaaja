@@ -2,7 +2,6 @@ package com.animebiru.kerjaaja.presentation.custom_view
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
@@ -10,13 +9,9 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.marginTop
 import com.animebiru.kerjaaja.R
-import com.animebiru.kerjaaja.domain.utils.ExtensionFunctions.dp
-import com.google.android.material.color.MaterialColors
 import com.google.android.material.divider.MaterialDivider
 import com.google.android.material.imageview.ShapeableImageView
-import kotlin.math.roundToInt
 
 class ListItemView: FrameLayout {
 
@@ -24,7 +19,7 @@ class ListItemView: FrameLayout {
     var itemIcon: Int = R.drawable.ic_person_24
         set(value) {
             field = value
-            rootView.findViewById<ShapeableImageView>(R.id.ivItemIcon)?.apply {
+            findViewById<ShapeableImageView>(R.id.ivItemIcon)?.apply {
                 setImageResource(value)
             }
         }
@@ -33,7 +28,7 @@ class ListItemView: FrameLayout {
     var itemActionIcon: Int = R.drawable.ic_arrow_right_24px
         set(value) {
             field = value
-            rootView.findViewById<ShapeableImageView>(R.id.ivItemActionIcon)?.apply {
+            findViewById<ShapeableImageView>(R.id.ivItemActionIcon)?.apply {
                 setImageResource(value)
             }
         }
@@ -41,7 +36,7 @@ class ListItemView: FrameLayout {
     var labelText: String = resources.getString(R.string.placeholder)
         set(value) {
             field = value
-            rootView.findViewById<TextView>(R.id.tvItemLabel)?.apply {
+            findViewById<TextView>(R.id.tvItemLabel)?.apply {
                 text = value
             }
         }
@@ -49,7 +44,7 @@ class ListItemView: FrameLayout {
     var subtitleText: String? = null
         set(value) {
             field = value
-            val tvSubtitle = rootView.findViewById<TextView>(R.id.tvItemSubtitle)
+            val tvSubtitle = findViewById<TextView>(R.id.tvItemSubtitle)
             if (value == null){
                 tvSubtitle.visibility = View.GONE
             } else {
@@ -67,7 +62,7 @@ class ListItemView: FrameLayout {
     var useBottomDivider: Boolean = true
         set(value) {
             field = value
-            val bottomDivider = rootView.findViewById<MaterialDivider>(R.id.dividerBottom)
+            val bottomDivider = findViewById<MaterialDivider>(R.id.dividerBottom)
             if (value) {
                 bottomDivider?.visibility = View.VISIBLE
             } else {
@@ -107,7 +102,7 @@ class ListItemView: FrameLayout {
     }
 
     private fun changeToSingleLineSubtitleLayout() {
-        val constraintLayout = rootView.findViewById<ConstraintLayout>(R.id.clListItemView)
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.clListItemView)
         val constraintSet = ConstraintSet().apply {
             clone(constraintLayout)
             connect(R.id.ivItemIcon, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
@@ -118,11 +113,11 @@ class ListItemView: FrameLayout {
             connect(R.id.ivItemActionIcon, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
         }
         constraintSet.applyTo(constraintLayout)
-        rootView.findViewById<TextView>(R.id.tvItemSubtitle)?.apply { maxLines = 1 }
+        findViewById<TextView>(R.id.tvItemSubtitle)?.apply { maxLines = 1 }
     }
 
     private fun changeToMultiLineSubtitleLayout() {
-        val constraintLayout = rootView.findViewById<ConstraintLayout>(R.id.clListItemView)
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.clListItemView)
         val constraintSet = ConstraintSet().apply {
             clone(constraintLayout)
             connect(R.id.ivItemIcon, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
@@ -132,7 +127,7 @@ class ListItemView: FrameLayout {
             connect(R.id.ivItemActionIcon, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
             clear(R.id.ivItemActionIcon, ConstraintSet.BOTTOM)
         }
-        rootView.findViewById<TextView>(R.id.tvItemSubtitle)?.apply { maxLines = 2 }
+        findViewById<TextView>(R.id.tvItemSubtitle)?.apply { maxLines = 2 }
         constraintSet.applyTo(constraintLayout)
     }
 

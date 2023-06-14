@@ -44,39 +44,33 @@
         android:paddingBottom="@dimen/padding_container"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/rvHistoryPage"
-        tools:listitem="@layout/card_recommendation_job"/>
+        tools:listitem="@layout/card_project_recommendation"/>
 
     <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButton"
+        android:id="@+id/toggleButtonStatus"
         android:layout_marginTop="@dimen/large_spacing"
+        android:paddingHorizontal="@dimen/padding_container"
         app:layout_anchor="@id/ablHistoryPage"
         app:layout_anchorGravity="bottom|center"
         android:translationY="28dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button1"
-            android:backgroundTint="?attr/colorSecondaryContainer"
+            android:id="@+id/btnFilterByOpenStatus"
             android:textColor="?attr/colorOnSecondaryContainer"
-            android:layout_width="wrap_content"
-            app:icon="@drawable/ic_check"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selesai"
+            android:text="Open"
             />
         <Button
             style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnFilterByCloseStatus"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="On Progress"
-            />
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Canceled"
+            android:text="Close"
             />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 

@@ -41,7 +41,7 @@
     <string name="label_menu_create_job">Selesai</string>
     <string name="content_desc_menu_create_job">Tombol Selesai</string>
     <string name="content_desc_et_find_location">Cari Lokasi</string>
-    <string name="helper_text_et_job_location">Lokasi job yang anda buat, kosongkan jika WFH</string>
+    <string name="helper_text_et_job_location">Lokasi job yang anda buat</string>
     <string name="label_et_job_location">Lokasi</string>
     <string name="helper_text_et_job_desc">Detail kegiatan dari job yang anda buat</string>
     <string name="label_et_job_desc">Deskripsi Job</string>
@@ -88,4 +88,9 @@
     <string name="label_btn_login">Login</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
+    <string name="helper_text_dropdown_category">Pisahkan dengan koma \",\"</string>
+    <string name="label_search_bar_find_location">Cari Lokasi...</string>
+    <string name="helper_text_et_project_fee">Nominal upah (number only)</string>
+    <string name="label_et_project_fee">Upah</string>
+    <string name="label_fab_chat">Chatting</string>
 </resources>
