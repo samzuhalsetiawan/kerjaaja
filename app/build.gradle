@@ -36,12 +36,18 @@ android {
     }
     buildFeatures {
         viewBinding true
+        mlModelBinding true
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
+
 }
 
 dependencies {
     def lifecycle_version = "2.6.1"
-    def nav_version = "2.5.3"
+    def nav_version = "2.6.0"
+    def room_version = "2.5.1"
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -107,8 +113,35 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1'
 
-//    Splash API
+//    Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+//    Paging 3
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+
+//    kotlin date-time
+    implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+
+//    Kotlin Json Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+
+//    Swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+//    TFLite
+//    implementation "org.tensorflow:tensorflow-lite:2.12.0"
+    implementation 'org.tensorflow:tensorflow-lite-task-text:0.4.0'
+//    implementation 'com.google.android.gms:play-services-tflite-java:16.1.0'
+//    implementation 'com.google.android.gms:play-services-tflite-support:16.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.4.0'
+
+    //    Splash API
     implementation "androidx.core:core-splashscreen:1.0.1"
 }
 

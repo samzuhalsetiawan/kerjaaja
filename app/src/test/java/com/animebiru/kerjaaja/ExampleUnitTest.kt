@@ -1,5 +1,6 @@
 package com.animebiru.kerjaaja
 
+import org.json.JSONArray
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -11,7 +12,10 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun `custom test`() {
+        val a = ", IOS Development"
+        val b = a.split(",").filter { it.isNotBlank() }.map { it.trim() }
+        println(b)
+        assertEquals(1, b.size)
     }
 }

@@ -13,12 +13,12 @@ import androidx.navigation.fragment.findNavController
 import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.databinding.FragmentLoginBinding
 import com.animebiru.kerjaaja.domain.utils.viewBindings
-import com.animebiru.kerjaaja.presentation.viewmodels.AuthenticationViewModel
+import com.animebiru.kerjaaja.presentation.viewmodels.UserViewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val binding by viewBindings(FragmentLoginBinding::bind)
-    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,7 +36,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun onButtonLoginClicked() {
         val username = binding.etUsername.text.toString()
         val password = binding.etPassword.text.toString()
-        authenticationViewModel.login(username, password)
+        userViewModel.login(username, password)
     }
 
     private fun onButtonRegisterClicked() {

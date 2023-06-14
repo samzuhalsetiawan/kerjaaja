@@ -2,6 +2,7 @@ package com.animebiru.kerjaaja.data.sources.remote
 
 import android.util.Log
 import com.animebiru.kerjaaja.data.sources.preferences.DataStorePreferences
+import com.animebiru.kerjaaja.domain.application.KerjaAjaApp
 import dagger.Lazy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class ApiConfig @Inject constructor(
     private val dataStorePreferences: DataStorePreferences
@@ -49,7 +51,7 @@ class ApiConfig @Inject constructor(
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://kerjaaja-backend-production.up.railway.app/")
+            .baseUrl(KerjaAjaApp.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

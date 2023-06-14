@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.animebiru.kerjaaja.R
 import com.animebiru.kerjaaja.databinding.FragmentRegisterBinding
-import com.animebiru.kerjaaja.domain.utils.ExtensionFunctions.toGender
+import com.animebiru.kerjaaja.domain.utils.ExtensionsHelper.toGender
 import com.animebiru.kerjaaja.domain.utils.viewBindings
-import com.animebiru.kerjaaja.presentation.ui.MainActivity
-import com.animebiru.kerjaaja.presentation.viewmodels.AuthenticationViewModel
+import com.animebiru.kerjaaja.presentation.ui.activity.main.MainActivity
+import com.animebiru.kerjaaja.presentation.viewmodels.UserViewModel
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private val binding by viewBindings(FragmentRegisterBinding::bind)
-    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
     private val mainActivity by lazy { activity as? MainActivity }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             mainActivity?.showError("Gender perlu diisi")
             return
         }
-        authenticationViewModel.register(username, fullName, gender, password)
+        userViewModel.register(username, fullName, gender, password)
     }
 
     private fun setAnimation(){

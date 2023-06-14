@@ -33,7 +33,7 @@
 
     <style name="Theme.KerjaAja" parent="Base.Theme.KerjaAja" />
 
-    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+    <style name="ShapeAppearanceOverlay.App.CircularImageView" parent="">
         <item name="cornerSize">50%</item>
     </style>
 

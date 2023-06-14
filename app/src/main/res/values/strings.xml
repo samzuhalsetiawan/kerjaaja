@@ -41,7 +41,7 @@
     <string name="label_menu_create_job">Selesai</string>
     <string name="content_desc_menu_create_job">Tombol Selesai</string>
     <string name="content_desc_et_find_location">Cari Lokasi</string>
-    <string name="helper_text_et_job_location">Lokasi job yang anda buat, kosongkan jika WFH</string>
+    <string name="helper_text_et_job_location">Lokasi job yang anda buat</string>
     <string name="label_et_job_location">Lokasi</string>
     <string name="helper_text_et_job_desc">Detail kegiatan dari job yang anda buat</string>
     <string name="label_et_job_desc">Deskripsi Job</string>
@@ -93,4 +93,8 @@
     <string name="tv_helper_change_profile_picture">Silahkan tekan foto untuk mengganti foto profile</string>
     <string name="tv_title_register">Registrasi</string>
     <string name="tv_helper_text_registration">Silahkan registrasi jika belum memiliki akun</string>
+    <string name="helper_text_et_project_fee">Masukan nominalnya saja (ex: 1000000)</string>
+    <string name="label_et_project_fee">Upah</string>
+    <string name="helper_text_dropdown_category">Masukan kategori project anda. pisahkan dengan koma \",\"</string>
+    <string name="label_fab_chat">Chatting</string>
 </resources>

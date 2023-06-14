@@ -1,13 +1,25 @@
 package com.animebiru.kerjaaja.data.sources.remote
 
-import com.animebiru.kerjaaja.data.sources.remote.dto.response.RegisterDto
-import com.animebiru.kerjaaja.data.sources.remote.dto.attribute.AttributeLoginDto
-import com.animebiru.kerjaaja.data.sources.remote.dto.response.LoginDto
-import com.google.gson.JsonNull
+import com.animebiru.kerjaaja.data.sources.remote.dto.CreateProjectDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.GetExistingProjectCategoryDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.GetExistingProjectDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.GetProjectByIdDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.GetUserByUsernameDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.RegisterDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.LoginDto
+import com.animebiru.kerjaaja.data.sources.remote.dto.UpdateUserProfilePictureDto
+import okhttp3.MultipartBody
+import org.json.JSONArray
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiService {
@@ -41,17 +53,17 @@ interface ApiService {
 //    @GET("users/read")
 //    fun getAllUsers():Response<UserResponse>
 //
-//    @GET("users/read/{username}")
-//    fun getFilterUsers(
-//        @Path("username") username:String
-//    ):Response<UserResponse>
-//
-//    @Multipart
-//    @PUT("users/profile_photo")
-//    fun changePhoto(
-//        @Part("file") file: MultipartBody.Part?,
-//        @PartMap data: Map<String,RequestBody>
-//    ):Response<UserResponse>
+    @GET("users/read")
+    suspend fun getUserByUsername(
+        @Query("username") username: String
+    ):Response<GetUserByUsernameDto>
+
+    @Multipart
+    @PUT("users/profile_photo/{username}")
+    suspend fun changePhoto(
+        @Part image: MultipartBody.Part,
+        @Path("username") username: String
+    ): Response<UpdateUserProfilePictureDto>
 //
 //    @PUT("users/change_username")
 //    fun changeUsername(
@@ -68,21 +80,52 @@ interface ApiService {
 //        @Query("delete") delete: Boolean? = false
 //    ):Response<UserResponse>
 //
-//    //Api Project
-//    @FormUrlEncoded
-//    @POST("projects/create")
-//    fun createProject(
-//        @Field("title") title: String,
-//        @Field("status") status: String,
-//        @Field("project_fee") projectEee: Int,
-//        @Field("deadline") deadline: String,
-//        @Field("owner_username") ownerUsername: String,
-//        @Field("region_latitude") regionLatitude: Float,
-//        @Field("region_longitude") regionLongitude: Float
-//    ):Response<ProjectResponse>
-//
-//    @GET("projects/read")
-//    fun getAllProjects():Response<ProjectResponse>
+    //Api Project
+    @FormUrlEncoded
+    @POST("projects/create")
+    suspend fun createProject(
+        @Field("title") title: String,
+        @Field("status") status: String,
+        @Field("project_fee") projectEee: Double,
+        @Field("deadline") deadline: String,
+        @Field("owner_username") ownerUsername: String,
+        @Field("region_latitude") regionLatitude: Float,
+        @Field("region_longitude") regionLongitude: Float,
+        @Field("category_list") categoryList: JSONArray
+    ):Response<CreateProjectDto>
+
+    @GET("projects/read")
+    suspend fun getAllProjects(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Response<GetExistingProjectDto>
+
+    @GET("projects/read")
+    suspend fun getProjectsByQuery(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Response<GetExistingProjectDto>
+
+    @GET("/projects/read/history/{username}")
+    suspend fun getProjectsByOwner(
+        @Path("username") username: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Response<GetExistingProjectDto>
+
+    @GET("projects/read")
+    suspend fun getAllProjectsByCategory(
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("category_names") categoryName: String
+    ): Response<GetExistingProjectDto>
+
+    @GET("projects/read")
+    suspend fun getProjectById(
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("id") projectId: String
+    ): Response<GetProjectByIdDto>
 //
 //
 //    @PUT("projects/update")
@@ -101,7 +144,7 @@ interface ApiService {
 //        @Query("id") id: String
 //    ):Response<ProjectResponse>
 //
-//    // Api Project Category
+    // Api Project Category
 //    @Multipart
 //    @POST("project_catgories/create")
 //    fun createProjectCategory(
@@ -109,8 +152,11 @@ interface ApiService {
 //        @Part image: MultipartBody.Part
 //    ):Response<ProjectCategoryResponse>
 //
-//    @GET("project_categories/read")
-//    fun getAllProjectCategories():Response<ProjectCategoryResponse>
+    @GET("project_categories/read")
+    suspend fun getAllProjectCategories(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ):Response<GetExistingProjectCategoryDto>
 //
 //    @GET("project_categories/read/{name}")
 //    fun getFilterProjectCategories(
