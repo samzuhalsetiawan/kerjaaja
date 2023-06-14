@@ -88,4 +88,9 @@
     <string name="label_btn_login">Login</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
+    <string name="tv_login_title">Masuk</string>
+    <string name="content_description_logo_image">Image Logo</string>
+    <string name="tv_helper_change_profile_picture">Silahkan tekan foto untuk mengganti foto profile</string>
+    <string name="tv_title_register">Registrasi</string>
+    <string name="tv_helper_text_registration">Silahkan registrasi jika belum memiliki akun</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.animebiru.kerjaaja.presentation.ui.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -10,7 +12,6 @@ import com.animebiru.kerjaaja.domain.utils.ExtensionFunctions.toGender
 import com.animebiru.kerjaaja.domain.utils.viewBindings
 import com.animebiru.kerjaaja.presentation.ui.MainActivity
 import com.animebiru.kerjaaja.presentation.viewmodels.AuthenticationViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
@@ -27,6 +28,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             btnRegister.setOnClickListener { onButtonRegisterClicked() }
         }
 
+        setAnimation()
+
     }
 
     private fun onButtonRegisterClicked() {
@@ -38,5 +41,22 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             return
         }
         authenticationViewModel.register(username, fullName, gender, password)
+    }
+
+    private fun setAnimation(){
+
+        val imgLogo = ObjectAnimator.ofFloat(binding.imgLogo,View.ALPHA,1f).setDuration(500)
+        val textRegister = ObjectAnimator.ofFloat(binding.tvTitleRegister,View.ALPHA,1f).setDuration(500)
+        val usernameField = ObjectAnimator.ofFloat(binding.etlUsername,View.ALPHA,1f).setDuration(300)
+        val fullnameField = ObjectAnimator.ofFloat(binding.etlFullName,View.ALPHA,1f).setDuration(300)
+        val genderField = ObjectAnimator.ofFloat(binding.dropdownGender, View.ALPHA,1f).setDuration(300)
+        val passwordField = ObjectAnimator.ofFloat(binding.etlPassword,View.ALPHA,1f).setDuration(300)
+        val confirmPasswordField = ObjectAnimator.ofFloat(binding.etlPasswordConfirm, View.ALPHA,1f).setDuration(300)
+        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister,View.ALPHA,1f).setDuration(300)
+
+        AnimatorSet().apply {
+            playSequentially(imgLogo,textRegister,usernameField,fullnameField,genderField,passwordField,confirmPasswordField,btnRegister)
+            start()
+        }
     }
 }

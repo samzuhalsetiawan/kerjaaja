@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.animebiru.kerjaaja.R
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val navController by lazy { navHost.navController }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+
 
         authenticationViewModel.events.observe(this) { event ->
             Log.d("MY_DEBUG:${this@MainActivity.javaClass.simpleName}", "onCreate: event: ${event::class.java.simpleName}")
