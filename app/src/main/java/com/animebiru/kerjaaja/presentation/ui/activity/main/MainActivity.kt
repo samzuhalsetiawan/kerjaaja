@@ -199,8 +199,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun onLogin() {
         lifecycleScope.launch {
             val isNewUser = !dataStorePreferences.getBoardingStatus().first()
+            dataStorePreferences.setBoardingStatus(true)
             if (isNewUser) redirectToOnBoarding() else redirectToHomePage()
-            dataStorePreferences.setBoardingStatus(false)
         }
     }
 
