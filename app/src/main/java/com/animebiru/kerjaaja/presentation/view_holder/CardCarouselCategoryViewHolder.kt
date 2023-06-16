@@ -18,7 +18,6 @@ class CardCarouselCategoryViewHolder(
     fun bind(projectCategory: ProjectCategory) {
         Glide.with(binding.root.context)
             .load(projectCategory.photoUrl)
-            .placeholder(projectCategory.placeholder)
             .into(ivCarouselItemCategory)
         tvLabelItemCategory.text = projectCategory.title
         card.setOnClickListener { onProjectCategoryCardClickListener?.onProjectCategoryCardClickListener(projectCategory) }

@@ -50,6 +50,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.tvUsername.text = user.fullName
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(R.drawable.default_photo_profile)
                 .into(binding.ivProfilePicture)
         }
 

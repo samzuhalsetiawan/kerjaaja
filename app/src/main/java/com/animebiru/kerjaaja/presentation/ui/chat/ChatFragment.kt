@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
@@ -32,7 +33,9 @@ import io.socket.client.Ack
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -96,11 +99,12 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                 put("message", message)
             }
             Log.d("MY_DEBUG:${this@ChatFragment.javaClass.simpleName}", "onViewCreated: $payLoad")
-            return@setOnClickListener
             socket.emit("sendMessage", payLoad)
             binding.etChatInput.text?.clear()
             binding.etChatInput.clearFocus()
             Log.d("MY_DEBUG:${this@ChatFragment.javaClass.simpleName}", "onViewCreated: message sanded")
+            val chat = Chat(message, false, System.currentTimeMillis().toInt())
+            chatAdapter.listOfChat = chatAdapter.listOfChat + listOf(chat)
         }
 
     }
@@ -131,17 +135,27 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         }
     }
 
-    private val onGetMessages = Ack {
-        for (any in it) {
+    private val onGetMessages = Ack { data ->
+        for (any in data) {
             Log.d("MY_DEBUG:${this@ChatFragment.javaClass.simpleName}", "onGetMessage: it -> $any")
         }
-        val messages = it[0] as JSONArray
-        Log.d("MY_DEBUG:${this@ChatFragment.javaClass.simpleName}", "onGetMessages: ${messages.getJSONObject(0)}")
-
+        val messages = data[0] as JSONArray
+        val listOfChat = List(messages.length()) {
+            val jsonMessage = messages.getJSONObject(it)
+            val isIncoming = jsonMessage.has("receiver") && jsonMessage.getString("receiver") == receiverId
+            Chat(jsonMessage.getString("message"), isIncoming, jsonMessage.getInt("timestamp"))
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
+            chatAdapter.listOfChat = listOfChat
+        }
+        val payLoad = buildJsonObject {
+            put("receiver", receiverId)
+            put("sender", userId)
+        }
+        socket.emit("messageRead", payLoad)
     }
 
     private val onDisconnect = Emitter.Listener {
-        socket.emit("disconnected")
         Log.d("MY_DEBUG:${this@ChatFragment.javaClass.simpleName}", "onViewCreated: disconnect")
     }
 }

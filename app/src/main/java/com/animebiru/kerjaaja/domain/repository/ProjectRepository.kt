@@ -10,6 +10,10 @@ interface ProjectRepository {
 
     suspend fun getProjectsByOwner(owner: String, page: Int = 0, size: Int = 10): RepositoryResult<List<Project>>
 
+    suspend fun getProjectsByQuery(query: String, page: Int = 0, size: Int = 10): RepositoryResult<List<Project>>
+
+    suspend fun getAllProjectsByCategory(categories: List<String>, page: Int = 0, size: Int = 30): RepositoryResult<List<Project>>
+
     suspend fun createProject(
         title: String,
         status: ProjectStatus,

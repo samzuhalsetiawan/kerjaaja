@@ -41,7 +41,7 @@ abstract class MainDao {
     @Upsert(entity = ProjectCategoryEntity::class)
     abstract suspend fun upsertProjectCategories(projectCategories: List<ProjectCategoryEntity>)
 
-    @Query("SELECT * FROM project_categories")
+    @Query("SELECT * FROM project_categories ORDER BY created_at DESC")
     abstract fun getProjectCategories(): PagingSource<Int, ProjectCategoryEntity>
 
     @Query("DELETE FROM project_categories")

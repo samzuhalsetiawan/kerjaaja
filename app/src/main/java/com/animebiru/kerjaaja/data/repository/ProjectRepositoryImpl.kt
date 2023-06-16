@@ -155,4 +155,68 @@ class ProjectRepositoryImpl @Inject constructor(
             RepositoryResult.Error(Exception("Unhandled Error, See Error Log", tr))
         }
     }
+
+    override suspend fun getProjectsByQuery(
+        query: String,
+        page: Int,
+        size: Int
+    ): RepositoryResult<List<Project>> {
+        return try {
+            val response = mainApi.getProjectsByQuery(query, page, size)
+            return if (response.isSuccessful) {
+                val body = response.body() ?: throw ResponseNullBodyException("MainApi", "getProjectsByQuery")
+                val projects = body.data.attributes.records.map { it.toProject() }
+                RepositoryResult.Success(projects)
+            } else {
+                val body = response.errorBody()?.string() ?: throw ResponseNullBodyException("MainApi", "getProjectsByQuery")
+                val errorMessage = JSONObject(body).getJSONObject("errors").getString("message")
+                throw ResponseUnsuccessfulException("MainApi", "getProjectsByQuery", errorMessage)
+            }
+        } catch (responseUnsuccessfulException: ResponseUnsuccessfulException) {
+            responseUnsuccessfulException.printStackTrace()
+            val errorMessage = responseUnsuccessfulException.errorMessage
+            RepositoryResult.Error(Exception(errorMessage, responseUnsuccessfulException))
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            RepositoryResult.Error(Exception("Jaringan Error, Pastikan Anda memiliki koneksi internet", ioException))
+        } catch (httpException: HttpException) {
+            httpException.printStackTrace()
+            RepositoryResult.Error(Exception("Server Error: ${httpException.code()}", httpException))
+        } catch (tr: Throwable) {
+            tr.printStackTrace()
+            RepositoryResult.Error(Exception("Unhandled Error, See Error Log", tr))
+        }
+    }
+
+    override suspend fun getAllProjectsByCategory(
+        categories: List<String>,
+        page: Int,
+        size: Int
+    ): RepositoryResult<List<Project>> {
+        return try {
+            val response = mainApi.getAllProjectsByCategory(page, size, *categories.toTypedArray())
+            return if (response.isSuccessful) {
+                val body = response.body() ?: throw ResponseNullBodyException("MainApi", "getAllProjectsByCategory")
+                val projects = body.data.attributes.records.map { it.toProject() }
+                RepositoryResult.Success(projects)
+            } else {
+                val body = response.errorBody()?.string() ?: throw ResponseNullBodyException("MainApi", "getAllProjectsByCategory")
+                val errorMessage = JSONObject(body).getJSONObject("errors").getString("message")
+                throw ResponseUnsuccessfulException("MainApi", "getAllProjectsByCategory", errorMessage)
+            }
+        } catch (responseUnsuccessfulException: ResponseUnsuccessfulException) {
+            responseUnsuccessfulException.printStackTrace()
+            val errorMessage = responseUnsuccessfulException.errorMessage
+            RepositoryResult.Error(Exception(errorMessage, responseUnsuccessfulException))
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            RepositoryResult.Error(Exception("Jaringan Error, Pastikan Anda memiliki koneksi internet", ioException))
+        } catch (httpException: HttpException) {
+            httpException.printStackTrace()
+            RepositoryResult.Error(Exception("Server Error: ${httpException.code()}", httpException))
+        } catch (tr: Throwable) {
+            tr.printStackTrace()
+            RepositoryResult.Error(Exception("Unhandled Error, See Error Log", tr))
+        }
+    }
 }

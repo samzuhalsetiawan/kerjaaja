@@ -107,7 +107,7 @@ class UserRepositoryImpl @Inject constructor (
     override suspend fun updateUserProfilePicture(image: File): RepositoryResult<Unit> {
         return try {
             val username = dataStorePreferences.getUsernameFlow().first() ?: throw NullPointerException("Username is null")
-            val reducedImageFile = HelperUtil.reduceFileImage(image, 1_000_000)
+            val reducedImageFile = HelperUtil.reduceFileImage(image, 999_999)
             val photoPart = reducedImageFile.toImagePart("image")
             val response = mainApi.changePhoto(photoPart, username)
             return if (response.isSuccessful) {

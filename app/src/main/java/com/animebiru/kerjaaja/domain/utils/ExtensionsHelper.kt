@@ -25,6 +25,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDateTime
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -109,29 +112,33 @@ object ExtensionsHelper {
         val photoUrl = "$BASE_URL${owner.photoUrl}"
         val listOfCategoriesName = categories.map { it.projectCategory.name }
         val latLng = LatLng(latitude, longitude)
-        return Project(id, owner.username, photoUrl, title, fee, status, createdAt, listOfCategoriesName, latLng)
+        val formattedFee = fee.substring(2).reversed().chunked(3).joinToString(".").reversed()
+        return Project(id, owner.username, photoUrl, title, formattedFee, status, createdAt, listOfCategoriesName, latLng)
     }
 
     private fun CategoryDto.toProjectCategory(): ProjectCategory {
         val photoUrl = "$BASE_URL${projectCategory.photoUrl}"
-        return ProjectCategory(projectCategory.name, photoUrl)
+        val timestamp = createdAt.toInstant().epochSeconds
+        return ProjectCategory(projectCategory.name, photoUrl, timestamp)
     }
 
     fun ProjectCategoryDto.toProjectCategory(): ProjectCategory {
         val photoUrl = "$BASE_URL${this.photoUrl}"
-        return ProjectCategory(name, photoUrl)
+        val timestamp = createdAt.toInstant().epochSeconds
+        return ProjectCategory(name, photoUrl, timestamp)
     }
 
     fun ProjectCategory.toEntity(page: Int): ProjectCategoryEntity {
-        return ProjectCategoryEntity(title, photoUrl, page)
+        return ProjectCategoryEntity(title, photoUrl, createdAt, page)
     }
 
     fun ProjectCategoryEntity.toProjectCategory(): ProjectCategory {
-        return ProjectCategory(title, photoUrl)
+        return ProjectCategory(title, photoUrl, createdAt)
     }
 
     fun ProjectEntity.toProject(): Project {
         val latLng = LatLng(latitude.toDouble(), longitude.toDouble())
+//        val formattedFee = fee.substring(2).reversed().chunked(3).joinToString(".").reversed()
         return Project(id, creator, photoUrl, shortJobDesc, fee, status, createdAt, emptyList(), latLng)
     }
 

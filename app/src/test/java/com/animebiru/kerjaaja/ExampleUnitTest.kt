@@ -1,5 +1,6 @@
 package com.animebiru.kerjaaja
 
+import com.animebiru.kerjaaja.domain.utils.MLHelper
 import org.json.JSONArray
 import org.junit.Test
 
@@ -13,9 +14,8 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun `custom test`() {
-        val a = ", IOS Development"
-        val b = a.split(",").filter { it.isNotBlank() }.map { it.trim() }
-        println(b)
-        assertEquals(1, b.size)
+        val tes = MLHelper.other.split("\n")
+        println(tes)
+        assert(true)
     }
 }

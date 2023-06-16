@@ -31,7 +31,7 @@ class ApiConfig @Inject constructor(
             val accessToken = runBlocking { dataStorePreferences.getAccessTokenFlow().first() }
             val req = accessToken?.let { token ->
                 chain.request().newBuilder()
-                    .header("Authorization", token)
+                    .header("Authorization", "Bearer $token")
                     .build()
             } ?: chain.request()
             chain.proceed(req)

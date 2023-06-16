@@ -27,6 +27,7 @@ import com.animebiru.kerjaaja.presentation.adapter.ProjectCategoryCarouselAdapte
 import com.animebiru.kerjaaja.presentation.adapter.ProjectRecommendationAdapter
 import com.animebiru.kerjaaja.domain.utils.HelperDummyData
 import com.animebiru.kerjaaja.domain.utils.viewBindings
+import com.animebiru.kerjaaja.presentation.adapter.SearchProjectAdapter
 import com.animebiru.kerjaaja.presentation.listener.OnProjectCardClickListener
 import com.animebiru.kerjaaja.presentation.listener.OnProjectCategoryCardClickListener
 import com.animebiru.kerjaaja.presentation.viewmodels.ProjectViewModel
@@ -48,6 +49,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     private val projectViewModel: ProjectViewModel by viewModels()
     private lateinit var projectCategoryCarouselAdapter: ProjectCategoryCarouselAdapter
     private lateinit var projectRecommendationAdapter: ProjectRecommendationAdapter
+    private lateinit var projectSearchAdapter: SearchProjectAdapter
     private lateinit var projectRecommendationLayoutManager: LinearLayoutManager
     private var originalMode : Int? = null
 
@@ -63,6 +65,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
         binding.svMainSearchView.addTransitionListener(this)
         setupCategoryCarousel()
         setupJobRecommendationList()
+        setupProjectSearchList()
         projectViewModel.projectCategoryPager.observe(viewLifecycleOwner) { projectCategoryCarouselAdapter.submitData(lifecycle, it) }
         projectViewModel.projectPager.observe(viewLifecycleOwner) { projectRecommendationAdapter.submitData(lifecycle, it) }
         
@@ -82,14 +85,18 @@ class HomeFragment : Fragment(R.layout.fragment_home),
             }
         }
 
+        collectLatestFlowWhenStarted(projectViewModel.searchProject) {
+            projectSearchAdapter.submitList(it)
+        }
+
         binding.srlRefreshLayout.setOnRefreshListener {
             projectRecommendationAdapter.refresh()
         }
         binding.fabCreateJob.setOnClickListener { navigateToCreateProject() }
 
         binding.svMainSearchView.editText.setOnEditorActionListener { v, actionId, event ->
-            val query = binding.svMainSearchView.text
-            projectViewModel
+            val query = binding.svMainSearchView.text.toString()
+            projectViewModel.searchProject(query)
             false
         }
     }
@@ -111,7 +118,8 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     }
 
     override fun onProjectCategoryCardClickListener(projectCategory: ProjectCategory) {
-        Toast.makeText(requireContext(), projectCategory.title, Toast.LENGTH_LONG).show()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailListFragment(projectCategory.title)
+        findNavController().navigate(action)
     }
 
     override fun onStateChanged(
@@ -135,8 +143,16 @@ class HomeFragment : Fragment(R.layout.fragment_home),
         }
     }
 
+    private fun setupProjectSearchList() {
+        projectSearchAdapter = SearchProjectAdapter(this)
+        binding.rvSearchResult.apply {
+            adapter = projectSearchAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
     private fun setupCategoryCarousel() {
-        projectCategoryCarouselAdapter = ProjectCategoryCarouselAdapter()
+        projectCategoryCarouselAdapter = ProjectCategoryCarouselAdapter(this)
         binding.rvCarouselCategory.apply {
             adapter = projectCategoryCarouselAdapter
             layoutManager = CarouselLayoutManager()
