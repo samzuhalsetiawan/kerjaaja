@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.KerjaAja.Splash" parent="@style/Theme.SplashScreen">
+    <style name="Base.Theme.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/logo_blue_small</item>
         <item name="postSplashScreenTheme">@style/Theme.KerjaAja</item>

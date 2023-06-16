@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -54,8 +55,12 @@ class DetailProjectViewModel @Inject constructor(
                     _projectLocation.value = it[0].locality
                 }
             } else {
-                geocoder.getFromLocation(latitude, longitude, 1)?.let {
-                    _projectLocation.value = it[0].locality
+                try {
+                    geocoder.getFromLocation(latitude, longitude, 1)?.let {
+                        _projectLocation.value = it[0].locality
+                    }
+                } catch (err: IOException) {
+                    _projectLocation.value = "Unknown"
                 }
             }
         }

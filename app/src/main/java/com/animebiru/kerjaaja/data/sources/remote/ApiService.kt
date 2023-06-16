@@ -102,6 +102,7 @@ interface ApiService {
 
     @GET("projects/read")
     suspend fun getProjectsByQuery(
+        @Query("title") title: String,
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Response<GetExistingProjectDto>
@@ -117,7 +118,7 @@ interface ApiService {
     suspend fun getAllProjectsByCategory(
         @Query("page") page: Int,
         @Query("size") size: Int,
-        @Query("category_names") categoryName: String
+        @Query("category_names") vararg categoryName: String
     ): Response<GetExistingProjectDto>
 
     @GET("projects/read")

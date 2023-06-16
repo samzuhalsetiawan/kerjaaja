@@ -12,5 +12,7 @@ data class ProjectCategoryEntity(
     val title: String,
     @ColumnInfo("photo_url")
     val photoUrl: String,
+    @ColumnInfo("created_at")
+    val createdAt: Long,
     val page: Int
 )

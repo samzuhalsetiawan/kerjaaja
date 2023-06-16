@@ -60,6 +60,7 @@ class ChangePhotoProfileFragment :
             binding.tvUsername.text = user.fullName
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(R.drawable.default_photo_profile)
                 .into(binding.ivProfilePicture)
         }
 

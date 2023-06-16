@@ -23,7 +23,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:paddingTop="76dp"
                 android:paddingHorizontal="@dimen/padding_container"
-                android:paddingBottom="1000dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

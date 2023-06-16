@@ -9,8 +9,8 @@ object HelperDummyData {
     private const val lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate sem dui, vitae hendrerit lacus pretium quis. Aenean maximus vehicula sem eu tempor."
 
     val dummyChat = listOf(
-        Chat("1", "Hello", false),
-        Chat("1", "Saya ingin bertanya", false),
-        Chat("1", "Silahkan", true)
+        Chat( "Hello", false, 123),
+        Chat( "Saya ingin bertanya", false, 124),
+        Chat( "Silahkan", true, 125)
     )
 }

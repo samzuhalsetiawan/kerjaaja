@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/padding_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.boarding.questions.TrueFalseBoardingFragment">
+
+    <TextView
+        android:id="@+id/tvStatement"
+        android:textAlignment="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textColor="@color/md_theme_light_onSurface"
+        android:text="Saya menciptakan ruang interior yang fungsional dan menarik secara visual yang mencerminkan selera, kebutuhan, dan gaya hidup klien"
+        app:layout_constraintBottom_toTopOf="@id/lavTrue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:lottie_autoPlay="false"
+        android:id="@+id/lavTrue"
+        app:lottie_rawRes="@raw/lottie_success_check_tick"
+        app:layout_constraintTop_toTopOf="@id/lavFalse"
+        app:layout_constraintBottom_toBottomOf="@id/lavFalse"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/lavFalse" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:id="@+id/lavFalse"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/lottie_failed"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintLeft_toRightOf="@id/lavTrue"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:text="Next"
+        android:id="@+id/btnNext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
